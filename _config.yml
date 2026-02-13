@@ -2,5 +2,6 @@ title: Projekte von kiwi
 remote_theme: jekyll/minima
 plugins:
   - jekyll-remote-theme
+  - jekyll-feed
 minima:
   skin: auto
