@@ -1,38 +1,29 @@
 <nav class="nav-soft">
   <a href="{{ '/' | relative_url }}">Home</a>
 
-  <!-- Posts + Feed popup -->
   <div class="nav-item posts-wrapper" id="postsWrapper">
-    <a href="{{ '/posts/' | relative_url }}" class="posts-btn" id="postsBtn" aria-haspopup="true" aria-expanded="false">
-      Posts
-    </a>
+    <a href="{{ '/posts/' | relative_url }}" class="posts-btn" id="postsBtn">Posts</a>
 
-    <div class="feed-popup" id="feedPopup" role="menu" aria-hidden="true">
+    <div class="feed-popup" id="feedPopup">
       <div class="feed-content">
-        <label for="feedUrl" class="sr-only">Feed URL</label>
-        <input id="feedUrl" class="feed-url" readonly value="{{ '/feed.xml' | relative_url }}" aria-label="Feed-URL" />
-
-        <button class="copy-btn" id="copyFeed" type="button" aria-label="Feed-URL kopieren" title="Feed kopieren">
-          <!-- simple copy SVG -->
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+        <input id="feedUrl" class="feed-url" readonly value="{{ '/feed.xml' | relative_url }}" />
+        <button class="copy-btn" id="copyFeed" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18">
             <path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zM20 5H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h12v14z" fill="currentColor"/>
           </svg>
         </button>
       </div>
 
       <div class="feed-actions">
-        <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer" class="feed-open" role="menuitem">
+        <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer" class="feed-open">
           Feed öffnen
         </a>
       </div>
     </div>
   </div>
-
-  <a href="{{ '/feed.xml' | relative_url }}" class="visually-hidden">Feed (fallback)</a>
 </nav>
 
 <style>
-/* Basis nav (deine ursprünglichen Werte übernommen, nur kleine Anpassungen) */
 .nav-soft {
   display: flex;
   justify-content: center;
@@ -48,10 +39,8 @@
   color: #a8a8a8;
   padding: 4px 2px;
   border-bottom: 1px solid transparent;
-  transition:
-    color 0.18s ease,
-    border-color 0.18s ease,
-    transform 0.18s ease;
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
 }
 
 .nav-soft a:hover, .posts-btn:hover {
@@ -60,35 +49,29 @@
   transform: translateY(-1px);
 }
 
-/* wrapper relative so popup can be absolute without shifting layout */
 .posts-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-/* popup styles - positioned above the Posts button (bottom: 100%) */
 .feed-popup {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(6px);
-  bottom: calc(100% + 8px); /* places it just above the button */
+  bottom: calc(100% + 8px);
   min-width: 210px;
-  max-width: 280px;
   background: rgba(30,30,30,0.98);
-  color: #fff;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.45);
   opacity: 0;
   pointer-events: none;
   transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 180ms ease;
-  transform-origin: bottom center;
   z-index: 50;
   border: 1px solid rgba(255,255,255,0.04);
 }
 
-/* visible state: move upward and fade in */
 .posts-wrapper:hover .feed-popup,
 .posts-wrapper:focus-within .feed-popup,
 .posts-wrapper.open .feed-popup {
@@ -97,12 +80,10 @@
   transform: translateX(-50%) translateY(-6px);
 }
 
-/* small arrow pointing downwards (from popup toward button) */
 .feed-popup::after {
   content: "";
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   bottom: -6px;
   width: 12px;
   height: 12px;
@@ -113,7 +94,6 @@
   z-index: -1;
 }
 
-/* feed content layout */
 .feed-content {
   display: flex;
   gap: 8px;
@@ -121,9 +101,8 @@
   margin-bottom: 8px;
 }
 
-/* readonly input that shows the feed URL */
 .feed-url {
-  flex: 1 1 auto;
+  flex: 1;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.06);
   padding: 6px 8px;
@@ -133,35 +112,20 @@
   outline: none;
 }
 
-/* allow clicking the input to select text */
-.feed-url:focus {
-  border-color: rgba(255,255,255,0.14);
-}
-
-/* copy button */
 .copy-btn {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 6px;
   border-radius: 6px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.03);
+  color: #fff;
   cursor: pointer;
-  transition: filter 160ms ease, transform 120ms ease;
 }
 
-/* visual feedback on press */
-.copy-btn:active {
-  transform: translateY(1px);
-}
-
-/* toggled state: invert color as confirmation */
 .copy-btn.copied {
   filter: invert(1) hue-rotate(180deg);
 }
 
-/* small action link */
 .feed-actions {
   display: flex;
   justify-content: flex-end;
@@ -170,99 +134,53 @@
 .feed-open {
   color: #cfcfcf;
   font-size: 0.88rem;
-  text-decoration: none;
   padding: 4px 6px;
   border-radius: 6px;
-  transition: background 120ms ease, color 120ms ease;
 }
 
 .feed-open:hover {
   background: rgba(255,255,255,0.035);
   color: #fff;
 }
-
-/* accessibility helpers */
-.sr-only {
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
-}
-
-.visually-hidden { display: none !important; }
 </style>
 
 <script>
 (function () {
   const postsWrapper = document.getElementById('postsWrapper');
-  const postsBtn = document.getElementById('postsBtn');
-  const feedPopup = document.getElementById('feedPopup');
   const copyBtn = document.getElementById('copyFeed');
   const feedUrlInput = document.getElementById('feedUrl');
 
-  // Update ARIA when popup visible state toggles
-  function setOpen(isOpen) {
-    postsWrapper.classList.toggle('open', isOpen);
-    postsBtn.setAttribute('aria-expanded', String(isOpen));
-    feedPopup.setAttribute('aria-hidden', String(!isOpen));
-  }
-
-  // Copy handler
-  copyBtn.addEventListener('click', async function () {
-    const text = feedUrlInput.value;
+  copyBtn.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText(text);
-      // visual confirmation: invert icon briefly
+      await navigator.clipboard.writeText(feedUrlInput.value);
       copyBtn.classList.add('copied');
       setTimeout(() => copyBtn.classList.remove('copied'), 1200);
     } catch (err) {
-      // fallback: select and prompt user to copy manually
       feedUrlInput.select();
-      try { document.execCommand('copy'); copyBtn.classList.add('copied'); setTimeout(()=>copyBtn.classList.remove('copied'),1200); } catch(e){ /* ignore */ }
+      document.execCommand('copy');
     }
   });
 
-  // Allow selecting the feed URL by clicking the input
-  feedUrlInput.addEventListener('click', function () {
-    this.select();
-  });
+  feedUrlInput.addEventListener('click', () => feedUrlInput.select());
 
-  // Touch devices: first tap opens the popup instead of navigating.
-  // If device does not support hover, intercept the first click.
-  const prefersNoHover = window.matchMedia('(hover: none)').matches;
-
-  if (prefersNoHover) {
-    postsBtn.addEventListener('click', function (e) {
-      // if popup already open, allow normal navigation
+  if (window.matchMedia('(hover: none)').matches) {
+    document.getElementById('postsBtn').addEventListener('click', (e) => {
       if (!postsWrapper.classList.contains('open')) {
         e.preventDefault();
-        setOpen(true);
-        // close on outside touch
-        const closeOnOutside = (ev) => {
+        postsWrapper.classList.add('open');
+        const close = (ev) => {
           if (!postsWrapper.contains(ev.target)) {
-            setOpen(false);
-            document.removeEventListener('click', closeOnOutside);
+            postsWrapper.classList.remove('open');
+            document.removeEventListener('click', close);
           }
         };
-        document.addEventListener('click', closeOnOutside);
+        document.addEventListener('click', close);
       }
     });
   }
 
-  // keyboard: close popup on Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && postsWrapper.classList.contains('open')) {
-      setOpen(false);
-      postsBtn.focus();
-    }
-  });
-
-  // ensure focus-within shows popup (CSS handles it), but keep ARIA correct:
-  postsWrapper.addEventListener('focusin', function () { setOpen(true); });
-  postsWrapper.addEventListener('focusout', function (ev) {
-    // if focus moves outside wrapper, close
-    if (!postsWrapper.contains(ev.relatedTarget)) setOpen(false);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') postsWrapper.classList.remove('open');
   });
 })();
 </script>
