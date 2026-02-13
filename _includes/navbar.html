@@ -8,23 +8,9 @@
     </a>
 
     <div class="feed-popup" id="feedPopup" role="menu" aria-hidden="true">
-      <div class="feed-content">
-        <label for="feedUrl" class="sr-only">Feed URL</label>
-        <input id="feedUrl" class="feed-url" readonly value="{{ '/feed.xml' | relative_url }}" aria-label="Feed-URL" />
-
-        <button class="copy-btn" id="copyFeed" type="button" aria-label="Feed-URL kopieren" title="Feed kopieren">
-          <!-- simple copy SVG -->
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
-            <path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zM20 5H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h12v14z" fill="currentColor"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="feed-actions">
-        <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer" class="feed-open" role="menuitem">
-          Feed öffnen
-        </a>
-      </div>
+      <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer" class="feed-link" role="menuitem">
+        Feed
+      </a>
     </div>
   </div>
 
@@ -60,141 +46,58 @@
   transform: translateY(-1px);
 }
 
-/* wrapper relative so popup can be absolute without shifting layout */
+/* wrapper relative so popup can be absolute */
 .posts-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-/* popup styles - positioned above the Posts button (bottom: 100%) */
+/* popup - direkt über Posts, gleiche Breite */
 .feed-popup {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  bottom: calc(100% + 8px);
-  min-width: 220px;
-  max-width: 300px;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 4px);
   background: linear-gradient(135deg, rgba(45,45,50,0.98) 0%, rgba(35,35,40,0.98) 100%);
   backdrop-filter: blur(12px);
-  color: #fff;
-  padding: 14px;
-  border-radius: 10px;
+  padding: 2px;
+  border-radius: 6px;
   box-shadow: 
-    0 10px 30px rgba(0,0,0,0.6),
-    0 0 0 1px rgba(255,255,255,0.1),
-    0 0 40px rgba(100,100,255,0.15);
+    0 8px 20px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.15);
   opacity: 0;
   pointer-events: none;
   transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 180ms ease;
-  transform-origin: bottom center;
+  transform: translateY(6px);
   z-index: 50;
-  border: 1px solid rgba(255,255,255,0.15);
 }
 
-/* visible state: move upward and fade in */
+/* visible state */
 .posts-wrapper:hover .feed-popup,
 .posts-wrapper:focus-within .feed-popup,
 .posts-wrapper.open .feed-popup {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateY(0);
 }
 
-/* small arrow pointing downwards (from popup toward button) */
-.feed-popup::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  bottom: -7px;
-  width: 14px;
-  height: 14px;
-  background: linear-gradient(135deg, rgba(45,45,50,0.98) 0%, rgba(35,35,40,0.98) 100%);
-  border-right: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  z-index: -1;
-}
-
-/* feed content layout */
-.feed-content {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* readonly input that shows the feed URL */
-.feed-url {
-  flex: 1 1 auto;
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 8px 10px;
-  border-radius: 7px;
-  color: #e8e8e8;
-  font-size: 0.88rem;
-  outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-/* allow clicking the input to select text */
-.feed-url:focus {
-  border-color: rgba(255,255,255,0.25);
-  background: rgba(0,0,0,0.35);
-}
-
-/* copy button */
-.copy-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 7px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #e8e8e8;
-}
-
-.copy-btn:hover {
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.2);
-  transform: translateY(-1px);
-}
-
-/* visual feedback on press */
-.copy-btn:active {
-  transform: translateY(1px);
-}
-
-/* toggled state: green confirmation */
-.copy-btn.copied {
-  background: rgba(34,197,94,0.2);
-  border-color: rgba(34,197,94,0.4);
-  color: #4ade80;
-}
-
-/* small action link */
-.feed-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.feed-open {
-  color: #d4d4d4;
-  font-size: 0.88rem;
+/* Feed-Link - sieht aus wie der Posts-Button */
+.feed-link {
+  display: block;
   text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: all 0.15s ease;
-  border: 1px solid transparent;
+  color: #a8a8a8;
+  padding: 4px 2px;
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.feed-open:hover {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  border-color: rgba(255,255,255,0.1);
+.feed-link:hover {
+  color: #ffffff;
+  border-color: #ffffff55;
 }
 
 /* accessibility helpers */
@@ -214,8 +117,6 @@
   const postsWrapper = document.getElementById('postsWrapper');
   const postsBtn = document.getElementById('postsBtn');
   const feedPopup = document.getElementById('feedPopup');
-  const copyBtn = document.getElementById('copyFeed');
-  const feedUrlInput = document.getElementById('feedUrl');
 
   // Update ARIA when popup visible state toggles
   function setOpen(isOpen) {
@@ -224,27 +125,7 @@
     feedPopup.setAttribute('aria-hidden', String(!isOpen));
   }
 
-  // Copy handler
-  copyBtn.addEventListener('click', async function () {
-    const text = feedUrlInput.value;
-    try {
-      await navigator.clipboard.writeText(text);
-      // visual confirmation: green checkmark effect
-      copyBtn.classList.add('copied');
-      setTimeout(() => copyBtn.classList.remove('copied'), 1200);
-    } catch (err) {
-      // fallback: select and prompt user to copy manually
-      feedUrlInput.select();
-      try { document.execCommand('copy'); copyBtn.classList.add('copied'); setTimeout(()=>copyBtn.classList.remove('copied'),1200); } catch(e){ /* ignore */ }
-    }
-  });
-
-  // Allow selecting the feed URL by clicking the input
-  feedUrlInput.addEventListener('click', function () {
-    this.select();
-  });
-
-  // Touch devices: first tap opens the popup instead of navigating.
+  // Touch devices: first tap opens the popup
   const prefersNoHover = window.matchMedia('(hover: none)').matches;
 
   if (prefersNoHover) {
@@ -271,7 +152,7 @@
     }
   });
 
-  // ensure focus-within shows popup (CSS handles it), but keep ARIA correct:
+  // focus handling
   postsWrapper.addEventListener('focusin', function () { setOpen(true); });
   postsWrapper.addEventListener('focusout', function (ev) {
     if (!postsWrapper.contains(ev.relatedTarget)) setOpen(false);
