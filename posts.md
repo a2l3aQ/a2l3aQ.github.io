@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Alle Posts
-permalink: /_posts/
+permalink: /posts/
 ---
 
 <h1>Alle Posts</h1>
