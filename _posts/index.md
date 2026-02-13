@@ -1,4 +1,5 @@
 ---
+layout: base
 title: Alle Posts
 permalink: /posts/
 ---
