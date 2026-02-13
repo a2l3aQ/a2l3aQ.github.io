@@ -1,7 +1,3 @@
----
-layout: base
----
-
 Diese Seite ist ein Hub um meine Projekte organisiert zu dokumentieren.
 
 # Ideen
