@@ -4,4 +4,4 @@ plugins:
   - jekyll-remote-theme
   - jekyll-feed
 minima:
-  skin: auto
+  skin: dark
