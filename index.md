@@ -2,8 +2,6 @@
 layout: base
 ---
 
-{% include navbar.html %}
-
 Diese Seite ist ein Hub um meine Projekte organisiert zu dokumentieren.
 
 # Ideen
