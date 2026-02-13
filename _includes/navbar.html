@@ -1,40 +1,36 @@
-<nav class="nav-pill">
+<nav class="nav-soft">
   <a href="{{ '/' | relative_url }}">Home</a>
   <a href="{{ '/posts/' | relative_url }}">Posts</a>
 </nav>
 
 <style>
-.nav-pill {
+.nav-soft {
   display: flex;
-  gap: 12px;
-  padding: 10px 14px;
-  background: rgba(0,0,0,0.05);
-  border-radius: 999px;
-  width: fit-content;
-  margin: 20px auto;
-  backdrop-filter: blur(6px);
+  justify-content: center;
+  gap: 28px;
+  margin: 18px 0 10px 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
 }
 
-.nav-pill a {
+.nav-soft a {
   text-decoration: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  color: #222;
-  font-weight: 500;
-  transition: 
-    transform 0.18s ease,
-    background 0.18s ease,
-    box-shadow 0.18s ease;
+  color: #a8a8a8;
+  padding: 4px 2px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
-.nav-pill a:hover {
-  background: #222;
-  color: white;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+.nav-soft a:hover {
+  color: #ffffff;
+  border-color: #ffffff55;
+  transform: translateY(-1px);
 }
 
-.nav-pill a:active {
-  transform: translateY(0) scale(0.98);
+.nav-soft a:active {
+  transform: translateY(0);
 }
 </style>
