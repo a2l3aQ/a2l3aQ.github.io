@@ -1,6 +1,6 @@
 ---
 layout: base
-title: Kiwi Home
+title: Home
 ---
 
 Diese Seite ist ein Hub um meine Projekte organisiert zu dokumentieren.
