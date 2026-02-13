@@ -1,6 +1,6 @@
 ---
 title: "Erster Post"
-permalink: /posts/erster-post/
+permalink: /posts/2026-02-13/
 ---
 
 Wennst das lesen kannst, funktionierts anscheinend
