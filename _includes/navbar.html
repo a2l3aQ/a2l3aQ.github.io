@@ -1,24 +1,9 @@
 <nav class="nav-soft">
   <a href="{{ '/' | relative_url }}">Home</a>
-
-  <!-- Posts + Feed popup -->
-  <div class="nav-item posts-wrapper" id="postsWrapper">
-    <a href="{{ '/posts/' | relative_url }}" class="posts-btn" id="postsBtn" aria-haspopup="true" aria-expanded="false">
-      Posts
-    </a>
-
-    <div class="feed-popup" id="feedPopup" role="menu" aria-hidden="true">
-      <a href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer" class="feed-link" role="menuitem">
-        Feed
-      </a>
-    </div>
-  </div>
-
-  <a href="{{ '/feed.xml' | relative_url }}" class="visually-hidden">Feed (fallback)</a>
+  <a href="{{ '/posts/' | relative_url }}">Posts</a>
 </nav>
 
 <style>
-/* Basis nav */
 .nav-soft {
   display: flex;
   justify-content: center;
@@ -26,10 +11,9 @@
   margin: 18px 0 10px 0;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
-  align-items: center;
 }
 
-.nav-soft a, .posts-btn {
+.nav-soft a {
   text-decoration: none;
   color: #a8a8a8;
   padding: 4px 2px;
@@ -40,122 +24,13 @@
     transform 0.18s ease;
 }
 
-.nav-soft a:hover, .posts-btn:hover {
+.nav-soft a:hover {
   color: #ffffff;
   border-color: #ffffff55;
   transform: translateY(-1px);
 }
 
-/* wrapper relative so popup can be absolute */
-.posts-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* popup - direkt über Posts, gleiche Breite */
-.feed-popup {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(100% + 4px);
-  background: linear-gradient(135deg, rgba(45,45,50,0.98) 0%, rgba(35,35,40,0.98) 100%);
-  backdrop-filter: blur(12px);
-  padding: 2px;
-  border-radius: 6px;
-  box-shadow: 
-    0 8px 20px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(255,255,255,0.15);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 180ms ease;
-  transform: translateY(6px);
-  z-index: 50;
-}
-
-/* visible state */
-.posts-wrapper:hover .feed-popup,
-.posts-wrapper:focus-within .feed-popup,
-.posts-wrapper.open .feed-popup {
-  opacity: 1;
-  pointer-events: auto;
+.nav-soft a:active {
   transform: translateY(0);
 }
-
-/* Feed-Link - sieht aus wie der Posts-Button */
-.feed-link {
-  display: block;
-  text-decoration: none;
-  color: #a8a8a8;
-  padding: 4px 2px;
-  text-align: center;
-  border-bottom: 1px solid transparent;
-  transition:
-    color 0.18s ease,
-    border-color 0.18s ease;
-}
-
-.feed-link:hover {
-  color: #ffffff;
-  border-color: #ffffff55;
-}
-
-/* accessibility helpers */
-.sr-only {
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
-}
-
-.visually-hidden { display: none !important; }
 </style>
-
-<script>
-(function () {
-  const postsWrapper = document.getElementById('postsWrapper');
-  const postsBtn = document.getElementById('postsBtn');
-  const feedPopup = document.getElementById('feedPopup');
-
-  // Update ARIA when popup visible state toggles
-  function setOpen(isOpen) {
-    postsWrapper.classList.toggle('open', isOpen);
-    postsBtn.setAttribute('aria-expanded', String(isOpen));
-    feedPopup.setAttribute('aria-hidden', String(!isOpen));
-  }
-
-  // Touch devices: first tap opens the popup
-  const prefersNoHover = window.matchMedia('(hover: none)').matches;
-
-  if (prefersNoHover) {
-    postsBtn.addEventListener('click', function (e) {
-      if (!postsWrapper.classList.contains('open')) {
-        e.preventDefault();
-        setOpen(true);
-        const closeOnOutside = (ev) => {
-          if (!postsWrapper.contains(ev.target)) {
-            setOpen(false);
-            document.removeEventListener('click', closeOnOutside);
-          }
-        };
-        document.addEventListener('click', closeOnOutside);
-      }
-    });
-  }
-
-  // keyboard: close popup on Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && postsWrapper.classList.contains('open')) {
-      setOpen(false);
-      postsBtn.focus();
-    }
-  });
-
-  // focus handling
-  postsWrapper.addEventListener('focusin', function () { setOpen(true); });
-  postsWrapper.addEventListener('focusout', function (ev) {
-    if (!postsWrapper.contains(ev.relatedTarget)) setOpen(false);
-  });
-})();
-</script>
