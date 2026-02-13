@@ -1,2 +1,13 @@
-# a2l3aQ.github.io
-Projects
+Diese Seite ist ein Hub um meine Projekte organisiert zu dokumentieren.
+
+# Ideen
+
+- ...
+
+# Pläne
+
+- Analyse der Eigenschaften von kollektiven Systemen
+
+# Projekte
+
+- ...
