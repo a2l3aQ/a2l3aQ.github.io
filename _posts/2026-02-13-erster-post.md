@@ -1,5 +1,4 @@
 ---
-layout: base
 title: "Erster Post"
 permalink: /posts/erster-post/
 ---
