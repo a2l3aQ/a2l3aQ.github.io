@@ -1,4 +1,8 @@
-# Erster Post
+---
+layout: base
+title: "Erster Post"
+permalink: /posts/erster-post/
+---
 
 Wennst das lesen kannst, funktionierts anscheinend
 
