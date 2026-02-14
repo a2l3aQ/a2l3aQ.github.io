@@ -45,8 +45,10 @@ async def check():
                     with open('terraria_server_status', 'w+') as f:
                         f.write('online')
                     return 0
-                if tmout > 20 * TIMEOUT:
-                    return 1
+            if tmout > 20 * TIMEOUT:
+                return 1
+            if tmout % 20 == 0:
+                print(TIMEOUT - tmout % 20)
             time.sleep(1/20)
         
         with open('terraria_server_status', 'w+') as f:
