@@ -17,7 +17,7 @@ async def check():
         
         # Send Hello packet
         hello = sys.argv[3]
-        body = struct.pack('B', 1) + struct.pack('<B', len(hello)) + hello
+        body = struct.pack('B', 1) + struct.pack('<B', len(hello)) + hello.encode()
         packet = struct.pack('<H', len(body) + 2) + body
         sock.sendall(packet)
         
