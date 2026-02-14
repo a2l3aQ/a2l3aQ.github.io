@@ -3,16 +3,4 @@ layout: base
 title: Home
 ---
 
-Diese Seite ist ein Hub um meine Projekte organisiert zu dokumentieren.
-
-# Ideen
-
-- ...
-
-# Pläne
-
-- Analyse der Eigenschaften von kollektiven Systemen
-
-# Projekte
-
-- ...
+- Analyse der Eigenschaften von kollektiven Systeme
