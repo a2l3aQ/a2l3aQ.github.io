@@ -41,16 +41,16 @@ async def check():
                 
                 if msg_type in (3, 37):  # PlayerInfo or RequestPassword
                     with open('terraria_server_status', 'w+') as f:
-                        f.write('online')
+                        f.write(f'{time.ctime()} online')
                     return 0
         
         with open('terraria_server_status', 'w+') as f:
-            f.write('offline')
+            f.write(f'{time.ctime()} offline')
         return 1
         
     except Exception as e:
         with open('terraria_server_status', 'w+') as f:
-            f.write('offline')
+            f.write(f'{time.ctime()} offline')
         raise e
         return 1
     finally:
