@@ -5,7 +5,7 @@ import struct
 import sys
 
 HOST = sys.argv[1]
-PORT = sys.argv[2]
+PORT = int(sys.argv[2])
 TIMEOUT = 30
 
 async def check():
