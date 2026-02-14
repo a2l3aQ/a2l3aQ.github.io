@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.11'
       
-      - run: python check_server.py ${{TERRARIA_IP}} ${{TERRARIA_PORT}} ${{TERRARIA_STRING}}
+      - run: python check_server.py ${{secrets.TERRARIA_IP}} ${{secrets.TERRARIA_PORT}} ${{secrets.TERRARIA_STRING}}
         continue-on-error: true
       
       - run: |
