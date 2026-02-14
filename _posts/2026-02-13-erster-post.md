@@ -4,6 +4,4 @@ date: 2026-02-13T20:00:00+01:00
 permalink: /posts/2026-02-13/
 ---
 
-Wennst das lesen kannst, funktionierts anscheinend
-
-Das is eine neue Zeile um zu schauen wie schnell es updated!
+Webside erstellt und aufgesetzt.
