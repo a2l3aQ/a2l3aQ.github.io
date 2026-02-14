@@ -20,6 +20,7 @@
                   container.textContent = 'Fehler beim Laden: ' + error.message;
                   console.error('Da lief was schief:', error);
               }
+              setTimeout(getStatus, 20000)
           }
       
           getStatus();
