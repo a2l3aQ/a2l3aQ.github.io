@@ -6,7 +6,7 @@ import sys
 
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
-TIMEOUT = 5
+TIMEOUT = 15
 
 async def check():
     sock = None
