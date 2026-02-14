@@ -1,6 +1,6 @@
 ---
 title: "Terraria Server Status"
-date: 2026-02-14T90:07:00+0100
+date: 2026-02-14T09:07:00+0100
 permalink: /posts/2026-02-14/
 ---
 
