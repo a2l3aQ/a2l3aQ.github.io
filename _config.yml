@@ -5,4 +5,4 @@ plugins:
   - jekyll-feed
 minima:
   skin: dark
-  date_format: "%Y-%m-%dT%H:%M:%S%z"
+  date_format: "%Y-%m-%d %H:%M:%S"
