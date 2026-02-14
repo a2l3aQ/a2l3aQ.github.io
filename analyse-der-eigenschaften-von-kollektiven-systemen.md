@@ -9,3 +9,6 @@ Grobe Ideen zu kollektiven Systemen:
 - Welchen Aspekt optimieren?
   - Kohärenz für die Informationen anstreben, die an verschiedenen Zeitpunkten als Basis für das Modell dienen, das zum Erklären von Erlebnissen entsteht 
   - Die Menge der Informationen minimieren, auf die sich nach genug Rückschlüssen bezogen werden muss
+
+Papers:
+- <a href="https://www.mdpi.com/2075-1680/10/2/91" style="color: lightgray; text-decoration: underline;">The Formal Framework for Collective Systems</a>
