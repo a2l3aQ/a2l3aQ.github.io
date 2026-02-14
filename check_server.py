@@ -5,7 +5,7 @@ import struct
 import sys
 
 HOST = sys.argv[1]
-PORT = "7777"
+PORT = sys.argv[2]
 TIMEOUT = 30
 
 async def check():
@@ -16,7 +16,7 @@ async def check():
         sock.connect((HOST, PORT))
         
         # Send Hello packet
-        hello = "Terraria318"
+        hello = sys.argv[3]
         body = struct.pack('B', 1) + struct.pack('<B', len(hello)) + hello
         packet = struct.pack('<H', len(body) + 2) + body
         sock.sendall(packet)
