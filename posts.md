@@ -3,9 +3,6 @@ layout: page
 title: Alle Posts
 permalink: /posts/
 ---
-
-<h1>Alle Posts</h1>
-
 <ul>
 {% for post in site.posts %}
   <li>
