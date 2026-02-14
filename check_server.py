@@ -3,6 +3,7 @@ import asyncio
 import socket
 import struct
 import sys
+import time
 
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
