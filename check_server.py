@@ -24,8 +24,10 @@ async def check():
         # Wait for RequestPassword (37) or PlayerInfo (3)
         buffer = b''
         sock.settimeout(TIMEOUT)
+        tmout = 0
         
         while True:
+            tmout += 1
             data = sock.recv(4096)
             if not data:
                 break
@@ -43,6 +45,9 @@ async def check():
                     with open('terraria_server_status', 'w+') as f:
                         f.write('online')
                     return 0
+                if tmout > 20 * TIMEOUT:
+                    return 1
+            time.sleep(1/20)
         
         with open('terraria_server_status', 'w+') as f:
             f.write('offline')
