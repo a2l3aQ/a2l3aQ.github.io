@@ -1,4 +1,5 @@
 remote_theme: jekyll/minima
+date_format: %Y-%m-%dT%H:%M:%S%z
 plugins:
   - jekyll-remote-theme
   - jekyll-feed
