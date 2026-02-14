@@ -3,11 +3,16 @@ import asyncio
 import socket
 import struct
 import sys
-import time
+from datetime import datetime
+import pytz
 
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
 TIMEOUT = 15
+current_datetime = datetime.now()
+utc = pytz.utc
+tz = pytz.timezone('Europe/Vienna')
+now_utc = datetime.now(utc)
 
 async def check():
     sock = None
@@ -42,16 +47,16 @@ async def check():
                 
                 if msg_type in (3, 37):  # PlayerInfo or RequestPassword
                     with open('terraria_server_status', 'w+') as f:
-                        f.write(f'{time.strftime("%Y-%m-%d_%H:%M:%S")} online')
+                        f.write(f'{now_utc.astimezone(tz).strftime("%Y-%m-%d %H:%M:%S")} online')
                     return 0
         
         with open('terraria_server_status', 'w+') as f:
-            f.write(f'{time.strftime("%Y-%m-%d_%H:%M:%S")} offline')
+            f.write(f'{now_utc.astimezone(tz).strftime("%Y-%m-%d %H:%M:%S")} offline')
         return 1
         
     except Exception as e:
         with open('terraria_server_status', 'w+') as f:
-            f.write(f'{time.strftime("%Y-%m-%d_%H:%M:%S")} error while checking')
+            f.write(f'{now_utc.astimezone(tz).strftime("%Y-%m-%d %H:%M:%S")} error while checking')
         raise e
         return 1
     finally:
