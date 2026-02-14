@@ -51,7 +51,7 @@ async def check():
     except Exception as e:
         with open('terraria_server_status', 'w+') as f:
             f.write('offline')
-        print(e)
+        raise e
         return 1
     finally:
         if sock:
