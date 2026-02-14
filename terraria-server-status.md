@@ -1,6 +1,6 @@
 ---
 permalink: /terraria-server-status/
-layout: none
+layout: nohead
 ---
 <div class="wrapper">
   <div id="status-container">Lade Status...</div>
