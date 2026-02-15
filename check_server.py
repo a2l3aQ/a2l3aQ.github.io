@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, timezone
 
 HOST = sys.argv[1]
 PORT = int(sys.argv[2])
-TIMEOUT = 15
+TIMEOUT = 60
 
 utc_now = datetime.utcnow()
 vienna_time = utc_now.astimezone(timezone(timedelta(hours=+1)))
