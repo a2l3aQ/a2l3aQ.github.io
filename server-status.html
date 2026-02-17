@@ -1,37 +1,27 @@
 ---
 permalink: /server-status/
 ---
+
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- ENTFERNT: link zum style.css -->
-    <style>
-      body, html {
-          background: transparent !important;
-          margin: 0;
-          padding: 0;
-          overflow: hidden; /* Scrollbar entfernen */
-          color: #ffffff;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          font-size: 14px;
-      }
-      
-      .page-content,
-      .wrapper,
-      #status-container {
-          background: transparent !important;
-          margin: 0;
-          padding: 10px;
-      }
-    </style>
+    <link id="main-stylesheet" rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
   
   <body>
-    <div id="status-container">Lade Status...</div>
+    <main class="page-content" aria-label="Content" >
+      <div class="wrapper" >
+        <div class="wrapper">
+          <div id="status-container">Lade Status...</div>
+        </div>
+      </div>
+    </main>
   </body>
+
   <script>
     const terraria_url = 'https://raw.githubusercontent.com/a2l3aQ/a2l3aQ.github.io/refs/heads/master/server_status';
     const container = document.getElementById('status-container');
@@ -55,4 +45,5 @@ permalink: /server-status/
   
     getStatus();
   </script>
+
 </html>
