@@ -1,4 +1,4 @@
-name: Terraria Server Check
+name: Server Check
 
 on:
   schedule:
@@ -24,9 +24,9 @@ jobs:
       - run: |
           git config user.email "otaku3kiwi@gmail.com"
           git config user.name "Server Status Bot"
-          git add terraria_server_status
+          git add server_status
           git diff --staged --quiet || git commit -m "Update status"
           git push
       
       - if: always()
-        run: cat terraria_server_status
+        run: cat server_status
